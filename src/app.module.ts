@@ -7,7 +7,7 @@ import { ArticlesModule } from './articles/articles.module';
 import config from './config';
 
 @Module({
-  imports: [MongooseModule.forRoot(config.mongoUri), ArticlesModule],
+  imports: [MongooseModule.forRoot(config.mongoUri, { useNewUrlParser: true }), ArticlesModule],
   controllers: [AppController],
   providers: [AppService],
 })
