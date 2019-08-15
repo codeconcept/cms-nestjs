@@ -11,4 +11,13 @@ export class AppController {
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('me')
+  getProfile(@Request() req) {
+    // As we use the JWT guard on this method,
+    // we need to pass a header containing 'Bearer the_corresponding_jwt_token_passed_on_successful_login'
+    // when making a GET request to http://localhost:3000/api/me
+    return req.user;
+  }
 }
