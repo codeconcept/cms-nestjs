@@ -15,6 +15,11 @@ export class ArticlesController {
     return this.articlesService.findAll();
   }
 
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return this.articlesService.findOne(id);
+  }
+
   @Delete(':id')
   async deleteArticle(@Param('id') id: string) {
     return this.articlesService.delete(id);

@@ -17,6 +17,10 @@ export class ArticlesService {
     return await this.articleModel.find().exec();
   }
 
+  async findOne(id: string): Promise<Article> {
+    return await this.articleModel.findById(id).exec();
+  }
+
   async delete(id: string): Promise<Article> {
     return await this.articleModel.findByIdAndRemove(id);
   }
