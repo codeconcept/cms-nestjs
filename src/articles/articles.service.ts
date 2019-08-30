@@ -6,7 +6,9 @@ import { CreateArticleDto } from './dto/create-article.dto';
 
 @Injectable()
 export class ArticlesService {
-  constructor(@InjectModel('Article') private readonly articleModel: Model<Article>) {}
+  constructor(
+    @InjectModel('Article') private readonly articleModel: Model<Article>,
+  ) {}
 
   async create(createArticleDto: CreateArticleDto): Promise<Article> {
     const createdArticle = new this.articleModel(createArticleDto);
@@ -14,7 +16,10 @@ export class ArticlesService {
   }
 
   async findAll(): Promise<Article[]> {
-    return await this.articleModel.find().exec();
+    return await this.articleModel
+      .find()
+      .sort({ creationDate: -1 })
+      .exec();
   }
 
   async findOne(id: string): Promise<Article> {
