@@ -10,7 +10,7 @@ import config from './config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(config.mongoUri, { useNewUrlParser: true }),
+    MongooseModule.forRoot(config.mongoUri, { useNewUrlParser: true, useFindAndModify: false }),
     ArticlesModule,
     AuthModule,
     UsersModule,

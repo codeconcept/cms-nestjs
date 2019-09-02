@@ -24,6 +24,8 @@ export class ArticlesController {
 
   @Delete(':id')
   async deleteArticle(@Param('id') id: string) {
+    // tslint:disable-next-line: no-console
+    console.log('delete article with id -> ', id);
     return this.articlesService.delete(id);
   }
 }
