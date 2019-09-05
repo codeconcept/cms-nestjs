@@ -1,7 +1,8 @@
-import { Controller, Post, Body, Get, Delete, Param, UseInterceptors } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put } from '@nestjs/common';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { ArticlesService } from './articles.service';
 import { CheckauthorInterceptor } from '../checkauthor.interceptor';
+import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Controller('articles')
 export class ArticlesController {
@@ -27,5 +28,10 @@ export class ArticlesController {
     // tslint:disable-next-line: no-console
     console.log('delete article with id -> ', id);
     return this.articlesService.delete(id);
+  }
+
+  @Put(':id')
+  async updateArticle(@Param('id') id: string, @Body() article: UpdateArticleDto) {
+    return this.articlesService.update(id, article);
   }
 }
