@@ -1,9 +1,9 @@
 {
   "name": "cms-nestjs",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "license": "MIT",
+  "description": "App illustrating NestJS course",
+  "author": "EURL Code Concept",
+  "license": "UNLICENSED",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
