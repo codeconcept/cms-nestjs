@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from '../users/dto/create-user.dto';
+import { LoginUserDto } from '../users/dto/login-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -24,12 +25,12 @@ export class AuthService {
     return null;
   }
 
-  async login(readUserDto: CreateUserDto) {
-    const foundUser = await this.usersService.findOne(readUserDto.email);
+  async login(loginUserDto: LoginUserDto) {
+    const foundUser = await this.usersService.findOne(loginUserDto.email);
     if (!foundUser) {
       throw new NotFoundException(`email or password incorrect`);
     }
-    if (foundUser.password !== readUserDto.password) {
+    if (foundUser.password !== loginUserDto.password) {
       throw new NotFoundException(`email or password incorrect`);
     }
     const payload = {
